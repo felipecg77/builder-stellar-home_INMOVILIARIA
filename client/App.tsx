@@ -13,6 +13,7 @@ import PropiedadDetalle from "./pages/PropiedadDetalle";
 import Asesoria from "./pages/Asesoria";
 import Agentes from "./pages/Agentes";
 import Administrar from "./pages/Administrar";
+import Contacto from "./pages/Contacto";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 
