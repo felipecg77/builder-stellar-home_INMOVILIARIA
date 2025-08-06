@@ -479,8 +479,9 @@ export default function Administrar() {
   );
 
   return (
-    <Layout>
-      <div className="min-h-screen bg-background">
+    <ProtectedRoute requiredPermissions={["properties.read"]}>
+      <Layout>
+        <div className="min-h-screen bg-background">
         {/* Header */}
         <div className="bg-gradient-to-r from-primary/10 via-background to-accent/5 border-b">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -857,8 +858,9 @@ export default function Administrar() {
               </div>
             </TabsContent>
           </Tabs>
+          </div>
         </div>
-      </div>
-    </Layout>
+      </Layout>
+    </ProtectedRoute>
   );
 }
