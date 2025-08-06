@@ -108,7 +108,12 @@ export default function Layout({ children }: LayoutProps) {
                 </>
               ) : (
                 <>
-                  <Button variant="outline">Contacto</Button>
+                  <Button
+                    variant="outline"
+                    onClick={() => setIsContactModalOpen(true)}
+                  >
+                    Contacto
+                  </Button>
                   <Link to="/login">
                     <Button>
                       <LogIn className="w-4 h-4 mr-2" />
