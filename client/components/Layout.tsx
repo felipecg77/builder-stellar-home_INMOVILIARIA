@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import ContactModal from "@/components/ContactModal";
 import {
   Menu,
   X,
@@ -30,7 +31,7 @@ export default function Layout({ children }: LayoutProps) {
   const baseNavigation = [
     { name: "Inicio", href: "/", icon: Home },
     { name: "Propiedades", href: "/propiedades", icon: Building },
-    { name: "Asesoría Jurídica", href: "/asesoria", icon: Scale },
+    { name: "Asesor��a Jurídica", href: "/asesoria", icon: Scale },
     { name: "Agentes", href: "/agentes", icon: Users },
   ];
 
