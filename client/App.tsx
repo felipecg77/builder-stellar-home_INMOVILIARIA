@@ -10,6 +10,7 @@ import Index from "./pages/Index";
 import Propiedades from "./pages/Propiedades";
 import Asesoria from "./pages/Asesoria";
 import Agentes from "./pages/Agentes";
+import Administrar from "./pages/Administrar";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
