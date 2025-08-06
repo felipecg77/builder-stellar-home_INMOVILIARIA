@@ -496,10 +496,10 @@ export default function Asesoria() {
                       className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
                     />
                     <CardTitle className="text-xl">{lawyer.name}</CardTitle>
-                    <CardDescription>
-                      <Badge variant="outline" className="mb-2">{lawyer.title}</Badge>
-                      <p className="text-sm">{lawyer.specialization}</p>
-                    </CardDescription>
+                    <div className="space-y-2">
+                      <Badge variant="outline">{lawyer.title}</Badge>
+                      <CardDescription className="text-sm">{lawyer.specialization}</CardDescription>
+                    </div>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-2 text-sm text-muted-foreground">
