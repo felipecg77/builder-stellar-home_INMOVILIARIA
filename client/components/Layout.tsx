@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Home, Building, Scale, Users, Settings } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Menu, X, Home, Building, Scale, Users, Settings, LogIn, LogOut, Shield, User } from "lucide-react";
 
 interface LayoutProps {
   children: React.ReactNode;
