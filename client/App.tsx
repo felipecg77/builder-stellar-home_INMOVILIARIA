@@ -21,20 +21,23 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/propiedades" element={<Propiedades />} />
-          <Route path="/propiedades/:id" element={<PropiedadDetalle />} />
-          <Route path="/asesoria" element={<Asesoria />} />
-          <Route path="/agentes" element={<Agentes />} />
-          <Route path="/administrar" element={<Administrar />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <AuthProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/propiedades" element={<Propiedades />} />
+            <Route path="/propiedades/:id" element={<PropiedadDetalle />} />
+            <Route path="/asesoria" element={<Asesoria />} />
+            <Route path="/agentes" element={<Agentes />} />
+            <Route path="/administrar" element={<Administrar />} />
+            <Route path="/login" element={<Login />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );
