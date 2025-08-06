@@ -38,7 +38,7 @@ export default function Index() {
       type: 'Casa',
       price: '$4,500,000',
       location: 'Polanco, CDMX',
-      image: '/placeholder.svg',
+      image: 'https://images.pexels.com/photos/323776/pexels-photo-323776.jpeg?auto=compress&cs=tinysrgb&w=800',
       bedrooms: 3,
       bathrooms: 2,
       area: '180 m²',
@@ -50,7 +50,7 @@ export default function Index() {
       type: 'Terreno',
       price: '$2,800,000',
       location: 'Centro Histórico, CDMX',
-      image: '/placeholder.svg',
+      image: 'https://images.pexels.com/photos/9666115/pexels-photo-9666115.jpeg?auto=compress&cs=tinysrgb&w=800',
       area: '500 m²',
       featured: true
     },
@@ -60,7 +60,7 @@ export default function Index() {
       type: 'Local Comercial',
       price: '$3,200,000',
       location: 'Roma Norte, CDMX',
-      image: '/placeholder.svg',
+      image: 'https://images.pexels.com/photos/303317/pexels-photo-303317.jpeg?auto=compress&cs=tinysrgb&w=800',
       area: '120 m²',
       featured: false
     }
