@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Menu, X, Home, Building, Scale, Users } from 'lucide-react';
+import { Menu, X, Home, Building, Scale, Users, Settings } from 'lucide-react';
 
 interface LayoutProps {
   children: React.ReactNode;
