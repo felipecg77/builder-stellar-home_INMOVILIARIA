@@ -42,7 +42,7 @@ import {
 } from "lucide-react";
 
 export default function Administrar() {
-  const [userRole, setUserRole] = useState("admin"); // 'admin' or 'agent'
+  const { user, isAdmin, isAgent, hasPermission } = useAuth();
   const [selectedProperty, setSelectedProperty] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
