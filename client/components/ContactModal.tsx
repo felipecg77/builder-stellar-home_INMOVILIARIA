@@ -59,7 +59,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
       icon: MessageSquare,
       action: () =>
         window.open(
-          "https://wa.me/525598765432?text=Hola, me interesa saber más sobre sus propiedades"
+          "https://wa.me/525598765432?text=Hola, me interesa saber más sobre sus propiedades",
         ),
       color: "bg-green-600",
     },
@@ -76,7 +76,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
       icon: MapPin,
       action: () =>
         window.open(
-          "https://maps.google.com/?q=Polanco,Ciudad+de+México,México"
+          "https://maps.google.com/?q=Polanco,Ciudad+de+México,México",
         ),
       color: "bg-purple-500",
     },

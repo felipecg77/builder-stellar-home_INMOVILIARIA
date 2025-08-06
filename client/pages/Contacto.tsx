@@ -76,7 +76,9 @@ export default function Contacto() {
       value: "+52 (55) 9876-5432",
       icon: MessageSquare,
       action: () =>
-        window.open("https://wa.me/525598765432?text=Hola, me interesa saber más sobre sus propiedades"),
+        window.open(
+          "https://wa.me/525598765432?text=Hola, me interesa saber más sobre sus propiedades",
+        ),
       description: "Disponible 24/7",
     },
     {
@@ -85,7 +87,7 @@ export default function Contacto() {
       icon: MapPin,
       action: () =>
         window.open(
-          "https://maps.google.com/?q=Polanco,Ciudad+de+México,México"
+          "https://maps.google.com/?q=Polanco,Ciudad+de+México,México",
         ),
       description: "Av. Masaryk 123, Polanco V Sección",
     },
@@ -152,7 +154,9 @@ export default function Contacto() {
             <div>
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-2xl">Envíanos un Mensaje</CardTitle>
+                  <CardTitle className="text-2xl">
+                    Envíanos un Mensaje
+                  </CardTitle>
                   <CardDescription>
                     Completa el formulario y te contactaremos lo antes posible
                   </CardDescription>
@@ -275,7 +279,9 @@ export default function Contacto() {
                           <option value="">Seleccionar asunto</option>
                           <option value="compra">Compra de Propiedad</option>
                           <option value="venta">Venta de Propiedad</option>
-                          <option value="inversion">Oportunidades de Inversión</option>
+                          <option value="inversion">
+                            Oportunidades de Inversión
+                          </option>
                           <option value="asesoria">Asesoría Jurídica</option>
                           <option value="valuacion">Valuación</option>
                           <option value="agente">Ser Agente</option>
@@ -453,7 +459,7 @@ export default function Contacto() {
                         className="mt-2"
                         onClick={() =>
                           window.open(
-                            "https://maps.google.com/?q=Polanco,Ciudad+de+México,México"
+                            "https://maps.google.com/?q=Polanco,Ciudad+de+México,México",
                           )
                         }
                       >
@@ -498,9 +504,9 @@ export default function Contacto() {
                     ¿Cobran por la asesoría inicial?
                   </h3>
                   <p className="text-muted-foreground text-sm">
-                    No, la consulta inicial y asesoría básica son
-                    completamente gratuitas. Solo cobramos comisión al cerrar
-                    exitosamente una transacción.
+                    No, la consulta inicial y asesoría básica son completamente
+                    gratuitas. Solo cobramos comisión al cerrar exitosamente una
+                    transacción.
                   </p>
                 </CardContent>
               </Card>
