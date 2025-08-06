@@ -138,8 +138,47 @@ export default function Layout({ children }: LayoutProps) {
                   </Link>
                 );
               })}
-              <div className="px-3 py-2">
-                <Button className="w-full">Contacto</Button>
+              <div className="px-3 py-2 space-y-2">
+                {isAuthenticated ? (
+                  <>
+                    <div className="flex items-center space-x-3 px-3 py-2 bg-muted rounded-md">
+                      <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                        {isAdmin ? (
+                          <Shield className="w-4 h-4 text-primary" />
+                        ) : (
+                          <User className="w-4 h-4 text-primary" />
+                        )}
+                      </div>
+                      <div>
+                        <div className="text-sm font-medium">{user?.name}</div>
+                        <Badge variant={isAdmin ? "default" : "secondary"} className="text-xs">
+                          {user?.role === "admin" ? "Administrador" : "Agente"}
+                        </Badge>
+                      </div>
+                    </div>
+                    <Button
+                      variant="outline"
+                      className="w-full"
+                      onClick={() => {
+                        logout();
+                        setIsMenuOpen(false);
+                      }}
+                    >
+                      <LogOut className="w-4 h-4 mr-2" />
+                      Cerrar Sesión
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Button variant="outline" className="w-full">Contacto</Button>
+                    <Link to="/login" onClick={() => setIsMenuOpen(false)}>
+                      <Button className="w-full">
+                        <LogIn className="w-4 h-4 mr-2" />
+                        Iniciar Sesión
+                      </Button>
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
           </div>
