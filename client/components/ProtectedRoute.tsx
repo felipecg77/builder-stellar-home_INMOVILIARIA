@@ -1,8 +1,8 @@
-import React from 'react';
-import { Navigate } from 'react-router-dom';
-import { useAuth } from '@/contexts/AuthContext';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Shield, AlertCircle } from 'lucide-react';
+import React from "react";
+import { Navigate } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Shield, AlertCircle } from "lucide-react";
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -10,10 +10,10 @@ interface ProtectedRouteProps {
   adminOnly?: boolean;
 }
 
-export default function ProtectedRoute({ 
-  children, 
-  requiredPermissions = [], 
-  adminOnly = false 
+export default function ProtectedRoute({
+  children,
+  requiredPermissions = [],
+  adminOnly = false,
 }: ProtectedRouteProps) {
   const { isAuthenticated, user, hasPermission, isAdmin } = useAuth();
 
@@ -38,7 +38,10 @@ export default function ProtectedRoute({
               Esta sección requiere permisos de administrador.
             </p>
             <p className="text-sm text-muted-foreground">
-              Tu rol actual: <span className="font-medium">{user?.role === 'agent' ? 'Agente' : 'Usuario'}</span>
+              Tu rol actual:{" "}
+              <span className="font-medium">
+                {user?.role === "agent" ? "Agente" : "Usuario"}
+              </span>
             </p>
           </CardContent>
         </Card>
@@ -48,8 +51,8 @@ export default function ProtectedRoute({
 
   // Check specific permissions
   if (requiredPermissions.length > 0) {
-    const hasAllPermissions = requiredPermissions.every(permission => 
-      hasPermission(permission)
+    const hasAllPermissions = requiredPermissions.every((permission) =>
+      hasPermission(permission),
     );
 
     if (!hasAllPermissions) {
@@ -64,7 +67,8 @@ export default function ProtectedRoute({
             </CardHeader>
             <CardContent className="text-center">
               <p className="text-muted-foreground mb-4">
-                No tienes los permisos necesarios para acceder a esta funcionalidad.
+                No tienes los permisos necesarios para acceder a esta
+                funcionalidad.
               </p>
               <div className="text-sm text-muted-foreground">
                 <p className="mb-2">Permisos requeridos:</p>

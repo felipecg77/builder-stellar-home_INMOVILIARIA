@@ -158,8 +158,7 @@ export default function Administrar() {
     const matchesStatus =
       filterStatus === "all" || property.status === filterStatus;
     const matchesType = filterType === "all" || property.type === filterType;
-    const matchesAgent =
-      isAdmin || property.agentId === user?.id; // Show all for admin, only own for agents
+    const matchesAgent = isAdmin || property.agentId === user?.id; // Show all for admin, only own for agents
 
     return matchesSearch && matchesStatus && matchesType && matchesAgent;
   });
@@ -482,382 +481,386 @@ export default function Administrar() {
     <ProtectedRoute requiredPermissions={["properties.read"]}>
       <Layout>
         <div className="min-h-screen bg-background">
-        {/* Header */}
-        <div className="bg-gradient-to-r from-primary/10 via-background to-accent/5 border-b">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
-                  <Settings className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h1 className="text-3xl font-bold text-foreground">
-                    Administrar Propiedades
-                  </h1>
-                  <p className="text-muted-foreground">
-                    {isAdmin
-                      ? "Panel de administrador - Gestión completa"
-                      : "Panel de agente - Mis propiedades"}
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-center space-x-4">
-                <div className="flex items-center space-x-2">
-                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
-                    {isAdmin ? (
-                      <Shield className="w-5 h-5 text-primary" />
-                    ) : (
-                      <User className="w-5 h-5 text-primary" />
-                    )}
+          {/* Header */}
+          <div className="bg-gradient-to-r from-primary/10 via-background to-accent/5 border-b">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
+                    <Settings className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <div className="text-sm font-medium">{user?.name}</div>
-                    <Badge variant={isAdmin ? "default" : "secondary"} className="text-xs">
-                      {user?.role === "admin" ? "Administrador" : "Agente"}
-                    </Badge>
+                    <h1 className="text-3xl font-bold text-foreground">
+                      Administrar Propiedades
+                    </h1>
+                    <p className="text-muted-foreground">
+                      {isAdmin
+                        ? "Panel de administrador - Gestión completa"
+                        : "Panel de agente - Mis propiedades"}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-4">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                      {isAdmin ? (
+                        <Shield className="w-5 h-5 text-primary" />
+                      ) : (
+                        <User className="w-5 h-5 text-primary" />
+                      )}
+                    </div>
+                    <div>
+                      <div className="text-sm font-medium">{user?.name}</div>
+                      <Badge
+                        variant={isAdmin ? "default" : "secondary"}
+                        className="text-xs"
+                      >
+                        {user?.role === "admin" ? "Administrador" : "Agente"}
+                      </Badge>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <Tabs defaultValue="properties">
-            <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="properties">Propiedades</TabsTrigger>
-              {isAdmin && (
-                <TabsTrigger value="agents">Agentes</TabsTrigger>
-              )}
-              <TabsTrigger value="stats">Estadísticas</TabsTrigger>
-            </TabsList>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <Tabs defaultValue="properties">
+              <TabsList className="grid w-full grid-cols-3">
+                <TabsTrigger value="properties">Propiedades</TabsTrigger>
+                {isAdmin && <TabsTrigger value="agents">Agentes</TabsTrigger>}
+                <TabsTrigger value="stats">Estadísticas</TabsTrigger>
+              </TabsList>
 
-            {/* Properties Tab */}
-            <TabsContent value="properties" className="space-y-6">
-              {/* Add Property Form */}
-              {(isAdding || isEditing) && <PropertyForm />}
+              {/* Properties Tab */}
+              <TabsContent value="properties" className="space-y-6">
+                {/* Add Property Form */}
+                {(isAdding || isEditing) && <PropertyForm />}
 
-              {/* Filters and Actions */}
-              <Card>
-                <CardContent className="p-6">
-                  <div className="flex flex-col lg:flex-row gap-4 items-center justify-between mb-6">
-                    <div className="flex flex-col sm:flex-row gap-4 flex-1">
-                      <div className="relative flex-1">
-                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
-                        <input
-                          type="text"
-                          placeholder="Buscar propiedades..."
-                          className="w-full pl-10 pr-4 py-2 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                          value={searchTerm}
-                          onChange={(e) => setSearchTerm(e.target.value)}
-                        />
+                {/* Filters and Actions */}
+                <Card>
+                  <CardContent className="p-6">
+                    <div className="flex flex-col lg:flex-row gap-4 items-center justify-between mb-6">
+                      <div className="flex flex-col sm:flex-row gap-4 flex-1">
+                        <div className="relative flex-1">
+                          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+                          <input
+                            type="text"
+                            placeholder="Buscar propiedades..."
+                            className="w-full pl-10 pr-4 py-2 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                          />
+                        </div>
+                        <select
+                          className="px-3 py-2 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                          value={filterStatus}
+                          onChange={(e) => setFilterStatus(e.target.value)}
+                        >
+                          <option value="all">Todos los estados</option>
+                          <option value="activa">Activa</option>
+                          <option value="vendida">Vendida</option>
+                          <option value="pendiente">Pendiente</option>
+                          <option value="inactiva">Inactiva</option>
+                        </select>
+                        <select
+                          className="px-3 py-2 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                          value={filterType}
+                          onChange={(e) => setFilterType(e.target.value)}
+                        >
+                          <option value="all">Todos los tipos</option>
+                          <option value="Casa">Casa</option>
+                          <option value="Terreno">Terreno</option>
+                          <option value="Local Comercial">
+                            Local Comercial
+                          </option>
+                        </select>
                       </div>
-                      <select
-                        className="px-3 py-2 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                        value={filterStatus}
-                        onChange={(e) => setFilterStatus(e.target.value)}
+                      <Button
+                        onClick={handleAdd}
+                        disabled={isAdding || isEditing}
                       >
-                        <option value="all">Todos los estados</option>
-                        <option value="activa">Activa</option>
-                        <option value="vendida">Vendida</option>
-                        <option value="pendiente">Pendiente</option>
-                        <option value="inactiva">Inactiva</option>
-                      </select>
-                      <select
-                        className="px-3 py-2 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                        value={filterType}
-                        onChange={(e) => setFilterType(e.target.value)}
-                      >
-                        <option value="all">Todos los tipos</option>
-                        <option value="Casa">Casa</option>
-                        <option value="Terreno">Terreno</option>
-                        <option value="Local Comercial">Local Comercial</option>
-                      </select>
+                        <Plus className="w-4 h-4 mr-2" />
+                        Nueva Propiedad
+                      </Button>
                     </div>
-                    <Button
-                      onClick={handleAdd}
-                      disabled={isAdding || isEditing}
+
+                    <div className="text-sm text-muted-foreground mb-4">
+                      Mostrando {filteredProperties.length} propiedades
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Properties List */}
+                <div className="space-y-4">
+                  {filteredProperties.map((property) => (
+                    <Card
+                      key={property.id}
+                      className="hover:shadow-md transition-shadow"
                     >
-                      <Plus className="w-4 h-4 mr-2" />
-                      Nueva Propiedad
-                    </Button>
-                  </div>
-
-                  <div className="text-sm text-muted-foreground mb-4">
-                    Mostrando {filteredProperties.length} propiedades
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Properties List */}
-              <div className="space-y-4">
-                {filteredProperties.map((property) => (
-                  <Card
-                    key={property.id}
-                    className="hover:shadow-md transition-shadow"
-                  >
-                    <CardContent className="p-6">
-                      <div className="flex flex-col lg:flex-row gap-6">
-                        {/* Property Info */}
-                        <div className="flex-1">
-                          <div className="flex items-start justify-between mb-4">
-                            <div>
-                              <h3 className="text-xl font-semibold mb-2">
-                                {property.title}
-                              </h3>
-                              <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-2">
-                                <div className="flex items-center">
-                                  <MapPin className="w-4 h-4 mr-1" />
-                                  {property.location}
-                                </div>
-                                <div className="flex items-center">
-                                  <Building className="w-4 h-4 mr-1" />
-                                  {property.type}
-                                </div>
-                                <div className="flex items-center">
-                                  <Square className="w-4 h-4 mr-1" />
-                                  {property.area} m²
-                                </div>
-                                {property.bedrooms && (
+                      <CardContent className="p-6">
+                        <div className="flex flex-col lg:flex-row gap-6">
+                          {/* Property Info */}
+                          <div className="flex-1">
+                            <div className="flex items-start justify-between mb-4">
+                              <div>
+                                <h3 className="text-xl font-semibold mb-2">
+                                  {property.title}
+                                </h3>
+                                <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-2">
                                   <div className="flex items-center">
-                                    <Home className="w-4 h-4 mr-1" />
-                                    {property.bedrooms} hab,{" "}
-                                    {property.bathrooms} baños
+                                    <MapPin className="w-4 h-4 mr-1" />
+                                    {property.location}
+                                  </div>
+                                  <div className="flex items-center">
+                                    <Building className="w-4 h-4 mr-1" />
+                                    {property.type}
+                                  </div>
+                                  <div className="flex items-center">
+                                    <Square className="w-4 h-4 mr-1" />
+                                    {property.area} m²
+                                  </div>
+                                  {property.bedrooms && (
+                                    <div className="flex items-center">
+                                      <Home className="w-4 h-4 mr-1" />
+                                      {property.bedrooms} hab,{" "}
+                                      {property.bathrooms} baños
+                                    </div>
+                                  )}
+                                </div>
+                                {isAdmin && (
+                                  <div className="flex items-center text-sm text-muted-foreground mb-2">
+                                    <User className="w-4 h-4 mr-1" />
+                                    Agente: {property.agentName}
                                   </div>
                                 )}
                               </div>
-                              {isAdmin && (
-                                <div className="flex items-center text-sm text-muted-foreground mb-2">
-                                  <User className="w-4 h-4 mr-1" />
-                                  Agente: {property.agentName}
+                              <div className="text-right">
+                                <div className="text-2xl font-bold text-primary mb-2">
+                                  {property.priceFormatted}
                                 </div>
-                              )}
-                            </div>
-                            <div className="text-right">
-                              <div className="text-2xl font-bold text-primary mb-2">
-                                {property.priceFormatted}
+                                {getStatusBadge(property.status)}
+                                {property.featured && (
+                                  <Badge variant="outline" className="ml-2">
+                                    <Eye className="w-3 h-3 mr-1" />
+                                    Destacada
+                                  </Badge>
+                                )}
                               </div>
-                              {getStatusBadge(property.status)}
-                              {property.featured && (
-                                <Badge variant="outline" className="ml-2">
-                                  <Eye className="w-3 h-3 mr-1" />
-                                  Destacada
-                                </Badge>
-                              )}
                             </div>
-                          </div>
 
-                          <p className="text-muted-foreground mb-4">
-                            {property.description}
-                          </p>
+                            <p className="text-muted-foreground mb-4">
+                              {property.description}
+                            </p>
 
-                          {/* Stats */}
-                          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
-                            <div className="text-center p-3 bg-muted/50 rounded-lg">
-                              <div className="text-lg font-semibold">
-                                {property.views}
+                            {/* Stats */}
+                            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+                              <div className="text-center p-3 bg-muted/50 rounded-lg">
+                                <div className="text-lg font-semibold">
+                                  {property.views}
+                                </div>
+                                <div className="text-xs text-muted-foreground">
+                                  Vistas
+                                </div>
                               </div>
-                              <div className="text-xs text-muted-foreground">
-                                Vistas
+                              <div className="text-center p-3 bg-muted/50 rounded-lg">
+                                <div className="text-lg font-semibold">
+                                  {property.inquiries}
+                                </div>
+                                <div className="text-xs text-muted-foreground">
+                                  Consultas
+                                </div>
+                              </div>
+                              <div className="text-center p-3 bg-muted/50 rounded-lg">
+                                <div className="text-lg font-semibold">
+                                  {property.dateCreated}
+                                </div>
+                                <div className="text-xs text-muted-foreground">
+                                  Creada
+                                </div>
+                              </div>
+                              <div className="text-center p-3 bg-muted/50 rounded-lg">
+                                <div className="text-lg font-semibold">
+                                  {property.dateUpdated}
+                                </div>
+                                <div className="text-xs text-muted-foreground">
+                                  Actualizada
+                                </div>
                               </div>
                             </div>
-                            <div className="text-center p-3 bg-muted/50 rounded-lg">
-                              <div className="text-lg font-semibold">
-                                {property.inquiries}
-                              </div>
-                              <div className="text-xs text-muted-foreground">
-                                Consultas
-                              </div>
-                            </div>
-                            <div className="text-center p-3 bg-muted/50 rounded-lg">
-                              <div className="text-lg font-semibold">
-                                {property.dateCreated}
-                              </div>
-                              <div className="text-xs text-muted-foreground">
-                                Creada
-                              </div>
-                            </div>
-                            <div className="text-center p-3 bg-muted/50 rounded-lg">
-                              <div className="text-lg font-semibold">
-                                {property.dateUpdated}
-                              </div>
-                              <div className="text-xs text-muted-foreground">
-                                Actualizada
-                              </div>
-                            </div>
-                          </div>
 
-                          {/* Actions */}
-                          <div className="flex flex-wrap gap-2">
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              onClick={() => handleEdit(property)}
-                              disabled={isAdding || isEditing}
-                            >
-                              <Edit className="w-4 h-4 mr-2" />
-                              Editar
-                            </Button>
-                            <Button variant="outline" size="sm">
-                              <Eye className="w-4 h-4 mr-2" />
-                              Ver Público
-                            </Button>
-                            {(isAdmin || (isAgent && property.agentId === user?.id)) && (
+                            {/* Actions */}
+                            <div className="flex flex-wrap gap-2">
                               <Button
                                 variant="outline"
                                 size="sm"
-                                className="text-destructive"
-                                onClick={() => handleDelete(property.id)}
+                                onClick={() => handleEdit(property)}
                                 disabled={isAdding || isEditing}
                               >
-                                <Trash2 className="w-4 h-4 mr-2" />
-                                Eliminar
+                                <Edit className="w-4 h-4 mr-2" />
+                                Editar
                               </Button>
-                            )}
+                              <Button variant="outline" size="sm">
+                                <Eye className="w-4 h-4 mr-2" />
+                                Ver Público
+                              </Button>
+                              {(isAdmin ||
+                                (isAgent && property.agentId === user?.id)) && (
+                                <Button
+                                  variant="outline"
+                                  size="sm"
+                                  className="text-destructive"
+                                  onClick={() => handleDelete(property.id)}
+                                  disabled={isAdding || isEditing}
+                                >
+                                  <Trash2 className="w-4 h-4 mr-2" />
+                                  Eliminar
+                                </Button>
+                              )}
+                            </div>
                           </div>
                         </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+
+                {filteredProperties.length === 0 && (
+                  <Card>
+                    <CardContent className="p-12 text-center">
+                      <Building className="w-16 h-16 mx-auto text-muted-foreground mb-4" />
+                      <h3 className="text-xl font-semibold mb-2">
+                        No se encontraron propiedades
+                      </h3>
+                      <p className="text-muted-foreground mb-4">
+                        Ajusta los filtros o agrega una nueva propiedad
+                      </p>
+                      <Button onClick={handleAdd}>
+                        <Plus className="w-4 h-4 mr-2" />
+                        Agregar Primera Propiedad
+                      </Button>
+                    </CardContent>
+                  </Card>
+                )}
+              </TabsContent>
+
+              {/* Agents Tab (Admin Only) */}
+              {isAdmin && (
+                <TabsContent value="agents" className="space-y-6">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Gestión de Agentes</CardTitle>
+                      <CardDescription>
+                        Administra los agentes y sus propiedades asignadas
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-4">
+                        {agents.map((agent) => (
+                          <div
+                            key={agent.id}
+                            className="flex items-center justify-between p-4 border rounded-lg"
+                          >
+                            <div className="flex items-center space-x-4">
+                              <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                                <User className="w-5 h-5 text-primary" />
+                              </div>
+                              <div>
+                                <h4 className="font-semibold">{agent.name}</h4>
+                                <p className="text-sm text-muted-foreground">
+                                  {agent.properties} propiedades asignadas
+                                </p>
+                              </div>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                              <Badge
+                                variant={agent.active ? "default" : "secondary"}
+                              >
+                                {agent.active ? "Activo" : "Inactivo"}
+                              </Badge>
+                              <Button variant="outline" size="sm">
+                                <Edit className="w-4 h-4 mr-2" />
+                                Editar
+                              </Button>
+                            </div>
+                          </div>
+                        ))}
                       </div>
                     </CardContent>
                   </Card>
-                ))}
-              </div>
-
-              {filteredProperties.length === 0 && (
-                <Card>
-                  <CardContent className="p-12 text-center">
-                    <Building className="w-16 h-16 mx-auto text-muted-foreground mb-4" />
-                    <h3 className="text-xl font-semibold mb-2">
-                      No se encontraron propiedades
-                    </h3>
-                    <p className="text-muted-foreground mb-4">
-                      Ajusta los filtros o agrega una nueva propiedad
-                    </p>
-                    <Button onClick={handleAdd}>
-                      <Plus className="w-4 h-4 mr-2" />
-                      Agregar Primera Propiedad
-                    </Button>
-                  </CardContent>
-                </Card>
+                </TabsContent>
               )}
-            </TabsContent>
 
-            {/* Agents Tab (Admin Only) */}
-            {isAdmin && (
-              <TabsContent value="agents" className="space-y-6">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Gestión de Agentes</CardTitle>
-                    <CardDescription>
-                      Administra los agentes y sus propiedades asignadas
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
-                      {agents.map((agent) => (
-                        <div
-                          key={agent.id}
-                          className="flex items-center justify-between p-4 border rounded-lg"
-                        >
-                          <div className="flex items-center space-x-4">
-                            <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
-                              <User className="w-5 h-5 text-primary" />
-                            </div>
-                            <div>
-                              <h4 className="font-semibold">{agent.name}</h4>
-                              <p className="text-sm text-muted-foreground">
-                                {agent.properties} propiedades asignadas
-                              </p>
-                            </div>
-                          </div>
-                          <div className="flex items-center space-x-2">
-                            <Badge
-                              variant={agent.active ? "default" : "secondary"}
-                            >
-                              {agent.active ? "Activo" : "Inactivo"}
-                            </Badge>
-                            <Button variant="outline" size="sm">
-                              <Edit className="w-4 h-4 mr-2" />
-                              Editar
-                            </Button>
-                          </div>
+              {/* Stats Tab */}
+              <TabsContent value="stats" className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  <Card>
+                    <CardContent className="p-6">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="text-sm font-medium text-muted-foreground">
+                            Total Propiedades
+                          </p>
+                          <p className="text-2xl font-bold">
+                            {properties.length}
+                          </p>
                         </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
+                        <Building className="w-8 h-8 text-muted-foreground" />
+                      </div>
+                    </CardContent>
+                  </Card>
+                  <Card>
+                    <CardContent className="p-6">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="text-sm font-medium text-muted-foreground">
+                            Activas
+                          </p>
+                          <p className="text-2xl font-bold text-green-600">
+                            {
+                              properties.filter((p) => p.status === "activa")
+                                .length
+                            }
+                          </p>
+                        </div>
+                        <CheckCircle className="w-8 h-8 text-green-600" />
+                      </div>
+                    </CardContent>
+                  </Card>
+                  <Card>
+                    <CardContent className="p-6">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="text-sm font-medium text-muted-foreground">
+                            Vendidas
+                          </p>
+                          <p className="text-2xl font-bold text-blue-600">
+                            {
+                              properties.filter((p) => p.status === "vendida")
+                                .length
+                            }
+                          </p>
+                        </div>
+                        <DollarSign className="w-8 h-8 text-blue-600" />
+                      </div>
+                    </CardContent>
+                  </Card>
+                  <Card>
+                    <CardContent className="p-6">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="text-sm font-medium text-muted-foreground">
+                            Valor Total
+                          </p>
+                          <p className="text-2xl font-bold">$16.7M</p>
+                        </div>
+                        <TrendingUp className="w-8 h-8 text-muted-foreground" />
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
               </TabsContent>
-            )}
-
-            {/* Stats Tab */}
-            <TabsContent value="stats" className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <Card>
-                  <CardContent className="p-6">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="text-sm font-medium text-muted-foreground">
-                          Total Propiedades
-                        </p>
-                        <p className="text-2xl font-bold">
-                          {properties.length}
-                        </p>
-                      </div>
-                      <Building className="w-8 h-8 text-muted-foreground" />
-                    </div>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardContent className="p-6">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="text-sm font-medium text-muted-foreground">
-                          Activas
-                        </p>
-                        <p className="text-2xl font-bold text-green-600">
-                          {
-                            properties.filter((p) => p.status === "activa")
-                              .length
-                          }
-                        </p>
-                      </div>
-                      <CheckCircle className="w-8 h-8 text-green-600" />
-                    </div>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardContent className="p-6">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="text-sm font-medium text-muted-foreground">
-                          Vendidas
-                        </p>
-                        <p className="text-2xl font-bold text-blue-600">
-                          {
-                            properties.filter((p) => p.status === "vendida")
-                              .length
-                          }
-                        </p>
-                      </div>
-                      <DollarSign className="w-8 h-8 text-blue-600" />
-                    </div>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardContent className="p-6">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="text-sm font-medium text-muted-foreground">
-                          Valor Total
-                        </p>
-                        <p className="text-2xl font-bold">$16.7M</p>
-                      </div>
-                      <TrendingUp className="w-8 h-8 text-muted-foreground" />
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </TabsContent>
-          </Tabs>
+            </Tabs>
           </div>
         </div>
       </Layout>

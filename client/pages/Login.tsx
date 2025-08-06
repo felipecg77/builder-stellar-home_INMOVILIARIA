@@ -1,42 +1,48 @@
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '@/contexts/AuthContext';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { 
-  LogIn, 
-  Building, 
-  Shield, 
-  User, 
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import {
+  LogIn,
+  Building,
+  Shield,
+  User,
   AlertCircle,
   Eye,
-  EyeOff
-} from 'lucide-react';
+  EyeOff,
+} from "lucide-react";
 
 export default function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
+    setError("");
     setIsLoading(true);
 
     try {
       const success = await login(email, password);
       if (success) {
-        navigate('/administrar');
+        navigate("/administrar");
       } else {
-        setError('Credenciales incorrectas. Verifique su email y contraseña.');
+        setError("Credenciales incorrectas. Verifique su email y contraseña.");
       }
     } catch (err) {
-      setError('Error al iniciar sesión. Intente nuevamente.');
+      setError("Error al iniciar sesión. Intente nuevamente.");
     } finally {
       setIsLoading(false);
     }
@@ -44,23 +50,23 @@ export default function Login() {
 
   const demoUsers = [
     {
-      email: 'admin@inmovision.mx',
-      role: 'Administrador',
-      description: 'Acceso completo al sistema',
-      permissions: ['Gestión completa', 'Usuarios', 'Reportes']
+      email: "admin@inmovision.mx",
+      role: "Administrador",
+      description: "Acceso completo al sistema",
+      permissions: ["Gestión completa", "Usuarios", "Reportes"],
     },
     {
-      email: 'maria.gonzalez@inmovision.mx',
-      role: 'Agente',
-      description: 'Gestión de propiedades propias',
-      permissions: ['Crear propiedades', 'Editar propias', 'Eliminar propias']
+      email: "maria.gonzalez@inmovision.mx",
+      role: "Agente",
+      description: "Gestión de propiedades propias",
+      permissions: ["Crear propiedades", "Editar propias", "Eliminar propias"],
     },
     {
-      email: 'carlos.mendoza@inmovision.mx',
-      role: 'Agente',
-      description: 'Gestión de propiedades propias',
-      permissions: ['Crear propiedades', 'Editar propias', 'Eliminar propias']
-    }
+      email: "carlos.mendoza@inmovision.mx",
+      role: "Agente",
+      description: "Gestión de propiedades propias",
+      permissions: ["Crear propiedades", "Editar propias", "Eliminar propias"],
+    },
   ];
 
   return (
@@ -93,14 +99,14 @@ export default function Login() {
                     placeholder="tu@inmovision.mx"
                   />
                 </div>
-                
+
                 <div>
                   <label className="block text-sm font-medium mb-2">
                     Contraseña
                   </label>
                   <div className="relative">
                     <input
-                      type={showPassword ? 'text' : 'password'}
+                      type={showPassword ? "text" : "password"}
                       required
                       className="w-full px-3 py-2 pr-10 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                       value={password}
@@ -112,7 +118,11 @@ export default function Login() {
                       className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground"
                       onClick={() => setShowPassword(!showPassword)}
                     >
-                      {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                      {showPassword ? (
+                        <EyeOff className="w-4 h-4" />
+                      ) : (
+                        <Eye className="w-4 h-4" />
+                      )}
                     </button>
                   </div>
                 </div>
@@ -124,11 +134,7 @@ export default function Login() {
                   </div>
                 )}
 
-                <Button 
-                  type="submit" 
-                  className="w-full" 
-                  disabled={isLoading}
-                >
+                <Button type="submit" className="w-full" disabled={isLoading}>
                   {isLoading ? (
                     <div className="flex items-center">
                       <div className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full mr-2" />
@@ -144,8 +150,8 @@ export default function Login() {
               </form>
 
               <div className="mt-6 text-center">
-                <Link 
-                  to="/" 
+                <Link
+                  to="/"
                   className="text-sm text-muted-foreground hover:text-primary"
                 >
                   ← Volver al inicio
@@ -158,7 +164,9 @@ export default function Login() {
         {/* Demo Users Info */}
         <div className="space-y-6">
           <div className="text-center lg:text-left">
-            <h2 className="text-2xl font-bold mb-2">Usuarios de Demostración</h2>
+            <h2 className="text-2xl font-bold mb-2">
+              Usuarios de Demostración
+            </h2>
             <p className="text-muted-foreground">
               Utiliza cualquiera de estos usuarios para acceder al sistema
             </p>
@@ -166,19 +174,19 @@ export default function Login() {
 
           <div className="space-y-4">
             {demoUsers.map((user, index) => (
-              <Card 
-                key={index} 
+              <Card
+                key={index}
                 className="cursor-pointer hover:shadow-md transition-shadow"
                 onClick={() => {
                   setEmail(user.email);
-                  setPassword('123456');
+                  setPassword("123456");
                 }}
               >
                 <CardContent className="p-4">
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center space-x-3">
                       <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
-                        {user.role === 'Administrador' ? (
+                        {user.role === "Administrador" ? (
                           <Shield className="w-5 h-5 text-primary" />
                         ) : (
                           <User className="w-5 h-5 text-primary" />
@@ -186,26 +194,36 @@ export default function Login() {
                       </div>
                       <div>
                         <h3 className="font-semibold">{user.role}</h3>
-                        <p className="text-sm text-muted-foreground">{user.email}</p>
+                        <p className="text-sm text-muted-foreground">
+                          {user.email}
+                        </p>
                       </div>
                     </div>
-                    <Badge variant={user.role === 'Administrador' ? 'default' : 'secondary'}>
+                    <Badge
+                      variant={
+                        user.role === "Administrador" ? "default" : "secondary"
+                      }
+                    >
                       {user.role}
                     </Badge>
                   </div>
-                  
+
                   <p className="text-sm text-muted-foreground mb-3">
                     {user.description}
                   </p>
-                  
+
                   <div className="flex flex-wrap gap-1">
                     {user.permissions.map((permission, permIndex) => (
-                      <Badge key={permIndex} variant="outline" className="text-xs">
+                      <Badge
+                        key={permIndex}
+                        variant="outline"
+                        className="text-xs"
+                      >
                         {permission}
                       </Badge>
                     ))}
                   </div>
-                  
+
                   <div className="mt-3 text-xs text-muted-foreground">
                     Contraseña: <span className="font-mono">123456</span>
                   </div>
@@ -217,10 +235,21 @@ export default function Login() {
           <div className="bg-muted/50 rounded-lg p-4">
             <h3 className="font-semibold mb-2">Diferencias de Permisos:</h3>
             <ul className="text-sm text-muted-foreground space-y-1">
-              <li>• <strong>Administrador:</strong> Acceso completo a todas las funcionalidades</li>
-              <li>• <strong>Agente:</strong> Solo puede gestionar sus propias propiedades</li>
-              <li>• Los agentes no pueden eliminar propiedades de otros agentes</li>
-              <li>• Solo el administrador puede gestionar usuarios y ver reportes completos</li>
+              <li>
+                • <strong>Administrador:</strong> Acceso completo a todas las
+                funcionalidades
+              </li>
+              <li>
+                • <strong>Agente:</strong> Solo puede gestionar sus propias
+                propiedades
+              </li>
+              <li>
+                • Los agentes no pueden eliminar propiedades de otros agentes
+              </li>
+              <li>
+                • Solo el administrador puede gestionar usuarios y ver reportes
+                completos
+              </li>
             </ul>
           </div>
         </div>

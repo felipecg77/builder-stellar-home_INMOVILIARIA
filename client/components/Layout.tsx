@@ -3,7 +3,19 @@ import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Menu, X, Home, Building, Scale, Users, Settings, LogIn, LogOut, Shield, User } from "lucide-react";
+import {
+  Menu,
+  X,
+  Home,
+  Building,
+  Scale,
+  Users,
+  Settings,
+  LogIn,
+  LogOut,
+  Shield,
+  User,
+} from "lucide-react";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -24,7 +36,10 @@ export default function Layout({ children }: LayoutProps) {
 
   // Add admin navigation only for authenticated users
   const navigation = isAuthenticated
-    ? [...baseNavigation, { name: "Administrar", href: "/administrar", icon: Settings }]
+    ? [
+        ...baseNavigation,
+        { name: "Administrar", href: "/administrar", icon: Settings },
+      ]
     : baseNavigation;
 
   const isActive = (href: string) => location.pathname === href;
@@ -76,7 +91,10 @@ export default function Layout({ children }: LayoutProps) {
                     </div>
                     <div className="text-sm">
                       <div className="font-medium">{user?.name}</div>
-                      <Badge variant={isAdmin ? "default" : "secondary"} className="text-xs">
+                      <Badge
+                        variant={isAdmin ? "default" : "secondary"}
+                        className="text-xs"
+                      >
                         {user?.role === "admin" ? "Administrador" : "Agente"}
                       </Badge>
                     </div>
@@ -151,7 +169,10 @@ export default function Layout({ children }: LayoutProps) {
                       </div>
                       <div>
                         <div className="text-sm font-medium">{user?.name}</div>
-                        <Badge variant={isAdmin ? "default" : "secondary"} className="text-xs">
+                        <Badge
+                          variant={isAdmin ? "default" : "secondary"}
+                          className="text-xs"
+                        >
                           {user?.role === "admin" ? "Administrador" : "Agente"}
                         </Badge>
                       </div>
@@ -170,7 +191,9 @@ export default function Layout({ children }: LayoutProps) {
                   </>
                 ) : (
                   <>
-                    <Button variant="outline" className="w-full">Contacto</Button>
+                    <Button variant="outline" className="w-full">
+                      Contacto
+                    </Button>
                     <Link to="/login" onClick={() => setIsMenuOpen(false)}>
                       <Button className="w-full">
                         <LogIn className="w-4 h-4 mr-2" />
