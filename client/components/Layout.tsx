@@ -62,9 +62,41 @@ export default function Layout({ children }: LayoutProps) {
               ))}
             </nav>
 
-            {/* Contact Button */}
-            <div className="hidden md:block">
-              <Button>Contacto</Button>
+            {/* Authentication Controls */}
+            <div className="hidden md:flex items-center space-x-4">
+              {isAuthenticated ? (
+                <>
+                  <div className="flex items-center space-x-2">
+                    <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                      {isAdmin ? (
+                        <Shield className="w-4 h-4 text-primary" />
+                      ) : (
+                        <User className="w-4 h-4 text-primary" />
+                      )}
+                    </div>
+                    <div className="text-sm">
+                      <div className="font-medium">{user?.name}</div>
+                      <Badge variant={isAdmin ? "default" : "secondary"} className="text-xs">
+                        {user?.role === "admin" ? "Administrador" : "Agente"}
+                      </Badge>
+                    </div>
+                  </div>
+                  <Button variant="outline" size="sm" onClick={logout}>
+                    <LogOut className="w-4 h-4 mr-2" />
+                    Cerrar Sesión
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button variant="outline">Contacto</Button>
+                  <Link to="/login">
+                    <Button>
+                      <LogIn className="w-4 h-4 mr-2" />
+                      Iniciar Sesión
+                    </Button>
+                  </Link>
+                </>
+              )}
             </div>
 
             {/* Mobile menu button */}
