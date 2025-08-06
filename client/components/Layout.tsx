@@ -24,6 +24,7 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const location = useLocation();
   const { user, logout, isAuthenticated, isAdmin, isAgent } = useAuth();
 
@@ -31,7 +32,7 @@ export default function Layout({ children }: LayoutProps) {
   const baseNavigation = [
     { name: "Inicio", href: "/", icon: Home },
     { name: "Propiedades", href: "/propiedades", icon: Building },
-    { name: "Asesor��a Jurídica", href: "/asesoria", icon: Scale },
+    { name: "Asesoría Jurídica", href: "/asesoria", icon: Scale },
     { name: "Agentes", href: "/agentes", icon: Users },
   ];
 
