@@ -394,7 +394,7 @@ export default function Administrar() {
                 </div>
               </>
             )}
-            {userRole === "admin" && (
+            {isAdmin && (
               <div>
                 <label className="block text-sm font-medium mb-2">
                   Agente Asignado
@@ -529,7 +529,7 @@ export default function Administrar() {
           <Tabs defaultValue="properties">
             <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="properties">Propiedades</TabsTrigger>
-              {userRole === "admin" && (
+              {isAdmin && (
                 <TabsTrigger value="agents">Agentes</TabsTrigger>
               )}
               <TabsTrigger value="stats">Estadísticas</TabsTrigger>
@@ -629,7 +629,7 @@ export default function Administrar() {
                                   </div>
                                 )}
                               </div>
-                              {userRole === "admin" && (
+                              {isAdmin && (
                                 <div className="flex items-center text-sm text-muted-foreground mb-2">
                                   <User className="w-4 h-4 mr-1" />
                                   Agente: {property.agentName}
@@ -705,7 +705,7 @@ export default function Administrar() {
                               <Eye className="w-4 h-4 mr-2" />
                               Ver Público
                             </Button>
-                            {userRole === "admin" && (
+                            {(isAdmin || (isAgent && property.agentId === user?.id)) && (
                               <Button
                                 variant="outline"
                                 size="sm"
@@ -745,7 +745,7 @@ export default function Administrar() {
             </TabsContent>
 
             {/* Agents Tab (Admin Only) */}
-            {userRole === "admin" && (
+            {isAdmin && (
               <TabsContent value="agents" className="space-y-6">
                 <Card>
                   <CardHeader>
