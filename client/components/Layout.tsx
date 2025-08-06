@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { Menu, X, Home, Building, Scale, Users, Settings } from 'lucide-react';
+import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Menu, X, Home, Building, Scale, Users, Settings } from "lucide-react";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -12,11 +12,11 @@ export default function Layout({ children }: LayoutProps) {
   const location = useLocation();
 
   const navigation = [
-    { name: 'Inicio', href: '/', icon: Home },
-    { name: 'Propiedades', href: '/propiedades', icon: Building },
-    { name: 'Asesoría Jurídica', href: '/asesoria', icon: Scale },
-    { name: 'Agentes', href: '/agentes', icon: Users },
-    { name: 'Administrar', href: '/administrar', icon: Settings },
+    { name: "Inicio", href: "/", icon: Home },
+    { name: "Propiedades", href: "/propiedades", icon: Building },
+    { name: "Asesoría Jurídica", href: "/asesoria", icon: Scale },
+    { name: "Agentes", href: "/agentes", icon: Users },
+    { name: "Administrar", href: "/administrar", icon: Settings },
   ];
 
   const isActive = (href: string) => location.pathname === href;
@@ -32,7 +32,9 @@ export default function Layout({ children }: LayoutProps) {
               <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
                 <Building className="w-5 h-5 text-white" />
               </div>
-              <span className="text-xl font-bold text-foreground">InmoVision</span>
+              <span className="text-xl font-bold text-foreground">
+                InmoVision
+              </span>
             </Link>
 
             {/* Desktop Navigation */}
@@ -43,8 +45,8 @@ export default function Layout({ children }: LayoutProps) {
                   to={item.href}
                   className={`text-sm font-medium transition-colors hover:text-primary ${
                     isActive(item.href)
-                      ? 'text-primary border-b-2 border-primary'
-                      : 'text-muted-foreground'
+                      ? "text-primary border-b-2 border-primary"
+                      : "text-muted-foreground"
                   }`}
                 >
                   {item.name}
@@ -64,7 +66,11 @@ export default function Layout({ children }: LayoutProps) {
                 size="sm"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
-                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                {isMenuOpen ? (
+                  <X className="h-6 w-6" />
+                ) : (
+                  <Menu className="h-6 w-6" />
+                )}
               </Button>
             </div>
           </div>
@@ -82,8 +88,8 @@ export default function Layout({ children }: LayoutProps) {
                     to={item.href}
                     className={`flex items-center px-3 py-2 rounded-md text-base font-medium transition-colors ${
                       isActive(item.href)
-                        ? 'text-primary bg-primary/10'
-                        : 'text-muted-foreground hover:text-primary hover:bg-muted'
+                        ? "text-primary bg-primary/10"
+                        : "text-muted-foreground hover:text-primary hover:bg-muted"
                     }`}
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -115,7 +121,9 @@ export default function Layout({ children }: LayoutProps) {
                 <span className="text-xl font-bold">InmoVision</span>
               </div>
               <p className="text-muted-foreground max-w-md">
-                Tu aliado de confianza en el mercado inmobiliario. Encontramos la propiedad perfecta para ti con asesoría profesional y agentes especializados.
+                Tu aliado de confianza en el mercado inmobiliario. Encontramos
+                la propiedad perfecta para ti con asesoría profesional y agentes
+                especializados.
               </p>
             </div>
             <div>

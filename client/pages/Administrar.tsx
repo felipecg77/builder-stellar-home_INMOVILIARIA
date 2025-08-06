@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
-import Layout from '@/components/Layout';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import React, { useState } from "react";
+import Layout from "@/components/Layout";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Settings,
   Plus,
@@ -30,137 +36,156 @@ import {
   X,
   Upload,
   Camera,
-  TrendingUp
-} from 'lucide-react';
+  TrendingUp,
+} from "lucide-react";
 
 export default function Administrar() {
-  const [userRole, setUserRole] = useState('admin'); // 'admin' or 'agent'
+  const [userRole, setUserRole] = useState("admin"); // 'admin' or 'agent'
   const [selectedProperty, setSelectedProperty] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filterStatus, setFilterStatus] = useState('all');
-  const [filterType, setFilterType] = useState('all');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filterStatus, setFilterStatus] = useState("all");
+  const [filterType, setFilterType] = useState("all");
 
   const [propertyForm, setPropertyForm] = useState({
-    id: '',
-    title: '',
-    type: '',
-    price: '',
-    location: '',
-    description: '',
-    bedrooms: '',
-    bathrooms: '',
-    area: '',
-    status: 'activa',
-    agentId: '',
+    id: "",
+    title: "",
+    type: "",
+    price: "",
+    location: "",
+    description: "",
+    bedrooms: "",
+    bathrooms: "",
+    area: "",
+    status: "activa",
+    agentId: "",
     images: [],
-    featured: false
+    featured: false,
   });
 
   const properties = [
     {
       id: 1,
-      title: 'Casa Moderna en Polanco',
-      type: 'Casa',
+      title: "Casa Moderna en Polanco",
+      type: "Casa",
       price: 4500000,
-      priceFormatted: '$4,500,000',
-      location: 'Polanco, CDMX',
-      status: 'activa',
-      agentId: 'agent001',
-      agentName: 'María González',
+      priceFormatted: "$4,500,000",
+      location: "Polanco, CDMX",
+      status: "activa",
+      agentId: "agent001",
+      agentName: "María González",
       bedrooms: 3,
       bathrooms: 2,
       area: 180,
-      description: 'Hermosa casa moderna con acabados de lujo',
+      description: "Hermosa casa moderna con acabados de lujo",
       featured: true,
       views: 156,
       inquiries: 12,
-      dateCreated: '2024-01-15',
-      dateUpdated: '2024-01-20'
+      dateCreated: "2024-01-15",
+      dateUpdated: "2024-01-20",
     },
     {
       id: 2,
-      title: 'Terreno Comercial Centro',
-      type: 'Terreno',
+      title: "Terreno Comercial Centro",
+      type: "Terreno",
       price: 2800000,
-      priceFormatted: '$2,800,000',
-      location: 'Centro Histórico, CDMX',
-      status: 'vendida',
-      agentId: 'agent002',
-      agentName: 'Carlos Mendoza',
+      priceFormatted: "$2,800,000",
+      location: "Centro Histórico, CDMX",
+      status: "vendida",
+      agentId: "agent002",
+      agentName: "Carlos Mendoza",
       area: 500,
-      description: 'Excelente terreno comercial en zona de alta plusvalía',
+      description: "Excelente terreno comercial en zona de alta plusvalía",
       featured: true,
       views: 89,
       inquiries: 8,
-      dateCreated: '2024-01-10',
-      dateUpdated: '2024-01-18'
+      dateCreated: "2024-01-10",
+      dateUpdated: "2024-01-18",
     },
     {
       id: 3,
-      title: 'Local Comercial Roma Norte',
-      type: 'Local Comercial',
+      title: "Local Comercial Roma Norte",
+      type: "Local Comercial",
       price: 3200000,
-      priceFormatted: '$3,200,000',
-      location: 'Roma Norte, CDMX',
-      status: 'pendiente',
-      agentId: 'agent001',
-      agentName: 'María González',
+      priceFormatted: "$3,200,000",
+      location: "Roma Norte, CDMX",
+      status: "pendiente",
+      agentId: "agent001",
+      agentName: "María González",
       area: 120,
-      description: 'Local comercial en excelente ubicación',
+      description: "Local comercial en excelente ubicación",
       featured: false,
       views: 45,
       inquiries: 3,
-      dateCreated: '2024-01-20',
-      dateUpdated: '2024-01-22'
+      dateCreated: "2024-01-20",
+      dateUpdated: "2024-01-22",
     },
     {
       id: 4,
-      title: 'Casa Familiar Coyoacán',
-      type: 'Casa',
+      title: "Casa Familiar Coyoacán",
+      type: "Casa",
       price: 6200000,
-      priceFormatted: '$6,200,000',
-      location: 'Coyoacán, CDMX',
-      status: 'inactiva',
-      agentId: 'agent003',
-      agentName: 'Ana Patricia Ruiz',
+      priceFormatted: "$6,200,000",
+      location: "Coyoacán, CDMX",
+      status: "inactiva",
+      agentId: "agent003",
+      agentName: "Ana Patricia Ruiz",
       bedrooms: 4,
       bathrooms: 3,
       area: 250,
-      description: 'Amplia casa familiar con patio trasero',
+      description: "Amplia casa familiar con patio trasero",
       featured: false,
       views: 78,
       inquiries: 5,
-      dateCreated: '2024-01-12',
-      dateUpdated: '2024-01-19'
-    }
+      dateCreated: "2024-01-12",
+      dateUpdated: "2024-01-19",
+    },
   ];
 
   const agents = [
-    { id: 'agent001', name: 'María González', properties: 2, active: true },
-    { id: 'agent002', name: 'Carlos Mendoza', properties: 1, active: true },
-    { id: 'agent003', name: 'Ana Patricia Ruiz', properties: 1, active: false }
+    { id: "agent001", name: "María González", properties: 2, active: true },
+    { id: "agent002", name: "Carlos Mendoza", properties: 1, active: true },
+    { id: "agent003", name: "Ana Patricia Ruiz", properties: 1, active: false },
   ];
 
   const filteredProperties = properties.filter((property) => {
-    const matchesSearch = property.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         property.location.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesStatus = filterStatus === 'all' || property.status === filterStatus;
-    const matchesType = filterType === 'all' || property.type === filterType;
-    const matchesAgent = userRole === 'admin' || property.agentId === 'agent001'; // Simulate current agent
+    const matchesSearch =
+      property.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      property.location.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesStatus =
+      filterStatus === "all" || property.status === filterStatus;
+    const matchesType = filterType === "all" || property.type === filterType;
+    const matchesAgent =
+      userRole === "admin" || property.agentId === "agent001"; // Simulate current agent
 
     return matchesSearch && matchesStatus && matchesType && matchesAgent;
   });
 
   const getStatusBadge = (status: string) => {
     const variants = {
-      'activa': { variant: 'default', icon: CheckCircle, color: 'text-green-600' },
-      'vendida': { variant: 'secondary', icon: CheckCircle, color: 'text-blue-600' },
-      'pendiente': { variant: 'outline', icon: AlertTriangle, color: 'text-orange-600' },
-      'inactiva': { variant: 'destructive', icon: XCircle, color: 'text-red-600' }
+      activa: {
+        variant: "default",
+        icon: CheckCircle,
+        color: "text-green-600",
+      },
+      vendida: {
+        variant: "secondary",
+        icon: CheckCircle,
+        color: "text-blue-600",
+      },
+      pendiente: {
+        variant: "outline",
+        icon: AlertTriangle,
+        color: "text-orange-600",
+      },
+      inactiva: {
+        variant: "destructive",
+        icon: XCircle,
+        color: "text-red-600",
+      },
     };
-    const config = variants[status] || variants['activa'];
+    const config = variants[status] || variants["activa"];
     const Icon = config.icon;
     return (
       <Badge variant={config.variant as any} className="flex items-center">
@@ -179,48 +204,52 @@ export default function Administrar() {
       price: property.price.toString(),
       location: property.location,
       description: property.description,
-      bedrooms: property.bedrooms?.toString() || '',
-      bathrooms: property.bathrooms?.toString() || '',
+      bedrooms: property.bedrooms?.toString() || "",
+      bathrooms: property.bathrooms?.toString() || "",
       area: property.area.toString(),
       status: property.status,
       agentId: property.agentId,
       images: [],
-      featured: property.featured
+      featured: property.featured,
     });
     setIsEditing(true);
   };
 
   const handleAdd = () => {
     setPropertyForm({
-      id: '',
-      title: '',
-      type: '',
-      price: '',
-      location: '',
-      description: '',
-      bedrooms: '',
-      bathrooms: '',
-      area: '',
-      status: 'activa',
-      agentId: userRole === 'agent' ? 'agent001' : '',
+      id: "",
+      title: "",
+      type: "",
+      price: "",
+      location: "",
+      description: "",
+      bedrooms: "",
+      bathrooms: "",
+      area: "",
+      status: "activa",
+      agentId: userRole === "agent" ? "agent001" : "",
       images: [],
-      featured: false
+      featured: false,
     });
     setIsAdding(true);
   };
 
   const handleSave = () => {
-    console.log('Saving property:', propertyForm);
-    alert(isAdding ? '¡Propiedad agregada exitosamente!' : '¡Propiedad actualizada exitosamente!');
+    console.log("Saving property:", propertyForm);
+    alert(
+      isAdding
+        ? "¡Propiedad agregada exitosamente!"
+        : "¡Propiedad actualizada exitosamente!",
+    );
     setIsEditing(false);
     setIsAdding(false);
     setSelectedProperty(null);
   };
 
   const handleDelete = (propertyId) => {
-    if (confirm('¿Estás seguro de que quieres eliminar esta propiedad?')) {
-      console.log('Deleting property:', propertyId);
-      alert('Propiedad eliminada exitosamente');
+    if (confirm("¿Estás seguro de que quieres eliminar esta propiedad?")) {
+      console.log("Deleting property:", propertyId);
+      alert("Propiedad eliminada exitosamente");
     }
   };
 
@@ -235,8 +264,12 @@ export default function Administrar() {
     <Card className="mb-6">
       <CardHeader>
         <CardTitle className="flex items-center">
-          {isAdding ? <Plus className="w-5 h-5 mr-2" /> : <Edit className="w-5 h-5 mr-2" />}
-          {isAdding ? 'Agregar Nueva Propiedad' : 'Editar Propiedad'}
+          {isAdding ? (
+            <Plus className="w-5 h-5 mr-2" />
+          ) : (
+            <Edit className="w-5 h-5 mr-2" />
+          )}
+          {isAdding ? "Agregar Nueva Propiedad" : "Editar Propiedad"}
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -248,7 +281,9 @@ export default function Administrar() {
                 type="text"
                 className="w-full px-3 py-2 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                 value={propertyForm.title}
-                onChange={(e) => setPropertyForm({...propertyForm, title: e.target.value})}
+                onChange={(e) =>
+                  setPropertyForm({ ...propertyForm, title: e.target.value })
+                }
               />
             </div>
             <div>
@@ -256,7 +291,9 @@ export default function Administrar() {
               <select
                 className="w-full px-3 py-2 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                 value={propertyForm.type}
-                onChange={(e) => setPropertyForm({...propertyForm, type: e.target.value})}
+                onChange={(e) =>
+                  setPropertyForm({ ...propertyForm, type: e.target.value })
+                }
               >
                 <option value="">Seleccionar tipo</option>
                 <option value="Casa">Casa</option>
@@ -266,30 +303,42 @@ export default function Administrar() {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium mb-2">Precio (MXN)</label>
+              <label className="block text-sm font-medium mb-2">
+                Precio (MXN)
+              </label>
               <input
                 type="number"
                 className="w-full px-3 py-2 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                 value={propertyForm.price}
-                onChange={(e) => setPropertyForm({...propertyForm, price: e.target.value})}
+                onChange={(e) =>
+                  setPropertyForm({ ...propertyForm, price: e.target.value })
+                }
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-2">Ubicación</label>
+              <label className="block text-sm font-medium mb-2">
+                Ubicación
+              </label>
               <input
                 type="text"
                 className="w-full px-3 py-2 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                 value={propertyForm.location}
-                onChange={(e) => setPropertyForm({...propertyForm, location: e.target.value})}
+                onChange={(e) =>
+                  setPropertyForm({ ...propertyForm, location: e.target.value })
+                }
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-2">Área (m²)</label>
+              <label className="block text-sm font-medium mb-2">
+                Área (m²)
+              </label>
               <input
                 type="number"
                 className="w-full px-3 py-2 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                 value={propertyForm.area}
-                onChange={(e) => setPropertyForm({...propertyForm, area: e.target.value})}
+                onChange={(e) =>
+                  setPropertyForm({ ...propertyForm, area: e.target.value })
+                }
               />
             </div>
             <div>
@@ -297,7 +346,9 @@ export default function Administrar() {
               <select
                 className="w-full px-3 py-2 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                 value={propertyForm.status}
-                onChange={(e) => setPropertyForm({...propertyForm, status: e.target.value})}
+                onChange={(e) =>
+                  setPropertyForm({ ...propertyForm, status: e.target.value })
+                }
               >
                 <option value="activa">Activa</option>
                 <option value="vendida">Vendida</option>
@@ -305,39 +356,62 @@ export default function Administrar() {
                 <option value="inactiva">Inactiva</option>
               </select>
             </div>
-            {propertyForm.type === 'Casa' && (
+            {propertyForm.type === "Casa" && (
               <>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Habitaciones</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Habitaciones
+                  </label>
                   <input
                     type="number"
                     className="w-full px-3 py-2 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                     value={propertyForm.bedrooms}
-                    onChange={(e) => setPropertyForm({...propertyForm, bedrooms: e.target.value})}
+                    onChange={(e) =>
+                      setPropertyForm({
+                        ...propertyForm,
+                        bedrooms: e.target.value,
+                      })
+                    }
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Baños</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Baños
+                  </label>
                   <input
                     type="number"
                     className="w-full px-3 py-2 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                     value={propertyForm.bathrooms}
-                    onChange={(e) => setPropertyForm({...propertyForm, bathrooms: e.target.value})}
+                    onChange={(e) =>
+                      setPropertyForm({
+                        ...propertyForm,
+                        bathrooms: e.target.value,
+                      })
+                    }
                   />
                 </div>
               </>
             )}
-            {userRole === 'admin' && (
+            {userRole === "admin" && (
               <div>
-                <label className="block text-sm font-medium mb-2">Agente Asignado</label>
+                <label className="block text-sm font-medium mb-2">
+                  Agente Asignado
+                </label>
                 <select
                   className="w-full px-3 py-2 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                   value={propertyForm.agentId}
-                  onChange={(e) => setPropertyForm({...propertyForm, agentId: e.target.value})}
+                  onChange={(e) =>
+                    setPropertyForm({
+                      ...propertyForm,
+                      agentId: e.target.value,
+                    })
+                  }
                 >
                   <option value="">Seleccionar agente</option>
                   {agents.map((agent) => (
-                    <option key={agent.id} value={agent.id}>{agent.name}</option>
+                    <option key={agent.id} value={agent.id}>
+                      {agent.name}
+                    </option>
                   ))}
                 </select>
               </div>
@@ -345,12 +419,19 @@ export default function Administrar() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-2">Descripción</label>
+            <label className="block text-sm font-medium mb-2">
+              Descripción
+            </label>
             <textarea
               rows={4}
               className="w-full px-3 py-2 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
               value={propertyForm.description}
-              onChange={(e) => setPropertyForm({...propertyForm, description: e.target.value})}
+              onChange={(e) =>
+                setPropertyForm({
+                  ...propertyForm,
+                  description: e.target.value,
+                })
+              }
             />
           </div>
 
@@ -359,15 +440,21 @@ export default function Administrar() {
               type="checkbox"
               id="featured"
               checked={propertyForm.featured}
-              onChange={(e) => setPropertyForm({...propertyForm, featured: e.target.checked})}
+              onChange={(e) =>
+                setPropertyForm({ ...propertyForm, featured: e.target.checked })
+              }
               className="rounded"
             />
-            <label htmlFor="featured" className="text-sm font-medium">Marcar como destacada</label>
+            <label htmlFor="featured" className="text-sm font-medium">
+              Marcar como destacada
+            </label>
           </div>
 
           <div className="border-2 border-dashed border-muted-foreground rounded-lg p-8 text-center">
             <Camera className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
-            <p className="text-muted-foreground mb-2">Subir fotos de la propiedad</p>
+            <p className="text-muted-foreground mb-2">
+              Subir fotos de la propiedad
+            </p>
             <Button variant="outline">
               <Upload className="w-4 h-4 mr-2" />
               Seleccionar Fotos
@@ -377,7 +464,7 @@ export default function Administrar() {
           <div className="flex space-x-4">
             <Button onClick={handleSave} className="flex-1">
               <Save className="w-4 h-4 mr-2" />
-              {isAdding ? 'Agregar Propiedad' : 'Guardar Cambios'}
+              {isAdding ? "Agregar Propiedad" : "Guardar Cambios"}
             </Button>
             <Button variant="outline" onClick={handleCancel} className="flex-1">
               <X className="w-4 h-4 mr-2" />
@@ -401,22 +488,35 @@ export default function Administrar() {
                   <Settings className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h1 className="text-3xl font-bold text-foreground">Administrar Propiedades</h1>
+                  <h1 className="text-3xl font-bold text-foreground">
+                    Administrar Propiedades
+                  </h1>
                   <p className="text-muted-foreground">
-                    {userRole === 'admin' ? 'Panel de administrador - Gestión completa' : 'Panel de agente - Mis propiedades'}
+                    {userRole === "admin"
+                      ? "Panel de administrador - Gestión completa"
+                      : "Panel de agente - Mis propiedades"}
                   </p>
                 </div>
               </div>
               <div className="flex items-center space-x-4">
-                <Badge variant={userRole === 'admin' ? 'default' : 'secondary'} className="flex items-center">
-                  {userRole === 'admin' ? <Shield className="w-4 h-4 mr-1" /> : <User className="w-4 h-4 mr-1" />}
-                  {userRole === 'admin' ? 'Administrador' : 'Agente'}
+                <Badge
+                  variant={userRole === "admin" ? "default" : "secondary"}
+                  className="flex items-center"
+                >
+                  {userRole === "admin" ? (
+                    <Shield className="w-4 h-4 mr-1" />
+                  ) : (
+                    <User className="w-4 h-4 mr-1" />
+                  )}
+                  {userRole === "admin" ? "Administrador" : "Agente"}
                 </Badge>
                 <Button
                   variant="outline"
-                  onClick={() => setUserRole(userRole === 'admin' ? 'agent' : 'admin')}
+                  onClick={() =>
+                    setUserRole(userRole === "admin" ? "agent" : "admin")
+                  }
                 >
-                  Cambiar a {userRole === 'admin' ? 'Agente' : 'Admin'}
+                  Cambiar a {userRole === "admin" ? "Agente" : "Admin"}
                 </Button>
               </div>
             </div>
@@ -427,7 +527,9 @@ export default function Administrar() {
           <Tabs defaultValue="properties">
             <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="properties">Propiedades</TabsTrigger>
-              {userRole === 'admin' && <TabsTrigger value="agents">Agentes</TabsTrigger>}
+              {userRole === "admin" && (
+                <TabsTrigger value="agents">Agentes</TabsTrigger>
+              )}
               <TabsTrigger value="stats">Estadísticas</TabsTrigger>
             </TabsList>
 
@@ -473,7 +575,10 @@ export default function Administrar() {
                         <option value="Local Comercial">Local Comercial</option>
                       </select>
                     </div>
-                    <Button onClick={handleAdd} disabled={isAdding || isEditing}>
+                    <Button
+                      onClick={handleAdd}
+                      disabled={isAdding || isEditing}
+                    >
                       <Plus className="w-4 h-4 mr-2" />
                       Nueva Propiedad
                     </Button>
@@ -488,14 +593,19 @@ export default function Administrar() {
               {/* Properties List */}
               <div className="space-y-4">
                 {filteredProperties.map((property) => (
-                  <Card key={property.id} className="hover:shadow-md transition-shadow">
+                  <Card
+                    key={property.id}
+                    className="hover:shadow-md transition-shadow"
+                  >
                     <CardContent className="p-6">
                       <div className="flex flex-col lg:flex-row gap-6">
                         {/* Property Info */}
                         <div className="flex-1">
                           <div className="flex items-start justify-between mb-4">
                             <div>
-                              <h3 className="text-xl font-semibold mb-2">{property.title}</h3>
+                              <h3 className="text-xl font-semibold mb-2">
+                                {property.title}
+                              </h3>
                               <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-2">
                                 <div className="flex items-center">
                                   <MapPin className="w-4 h-4 mr-1" />
@@ -512,11 +622,12 @@ export default function Administrar() {
                                 {property.bedrooms && (
                                   <div className="flex items-center">
                                     <Home className="w-4 h-4 mr-1" />
-                                    {property.bedrooms} hab, {property.bathrooms} baños
+                                    {property.bedrooms} hab,{" "}
+                                    {property.bathrooms} baños
                                   </div>
                                 )}
                               </div>
-                              {userRole === 'admin' && (
+                              {userRole === "admin" && (
                                 <div className="flex items-center text-sm text-muted-foreground mb-2">
                                   <User className="w-4 h-4 mr-1" />
                                   Agente: {property.agentName}
@@ -537,25 +648,43 @@ export default function Administrar() {
                             </div>
                           </div>
 
-                          <p className="text-muted-foreground mb-4">{property.description}</p>
+                          <p className="text-muted-foreground mb-4">
+                            {property.description}
+                          </p>
 
                           {/* Stats */}
                           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
                             <div className="text-center p-3 bg-muted/50 rounded-lg">
-                              <div className="text-lg font-semibold">{property.views}</div>
-                              <div className="text-xs text-muted-foreground">Vistas</div>
+                              <div className="text-lg font-semibold">
+                                {property.views}
+                              </div>
+                              <div className="text-xs text-muted-foreground">
+                                Vistas
+                              </div>
                             </div>
                             <div className="text-center p-3 bg-muted/50 rounded-lg">
-                              <div className="text-lg font-semibold">{property.inquiries}</div>
-                              <div className="text-xs text-muted-foreground">Consultas</div>
+                              <div className="text-lg font-semibold">
+                                {property.inquiries}
+                              </div>
+                              <div className="text-xs text-muted-foreground">
+                                Consultas
+                              </div>
                             </div>
                             <div className="text-center p-3 bg-muted/50 rounded-lg">
-                              <div className="text-lg font-semibold">{property.dateCreated}</div>
-                              <div className="text-xs text-muted-foreground">Creada</div>
+                              <div className="text-lg font-semibold">
+                                {property.dateCreated}
+                              </div>
+                              <div className="text-xs text-muted-foreground">
+                                Creada
+                              </div>
                             </div>
                             <div className="text-center p-3 bg-muted/50 rounded-lg">
-                              <div className="text-lg font-semibold">{property.dateUpdated}</div>
-                              <div className="text-xs text-muted-foreground">Actualizada</div>
+                              <div className="text-lg font-semibold">
+                                {property.dateUpdated}
+                              </div>
+                              <div className="text-xs text-muted-foreground">
+                                Actualizada
+                              </div>
                             </div>
                           </div>
 
@@ -574,7 +703,7 @@ export default function Administrar() {
                               <Eye className="w-4 h-4 mr-2" />
                               Ver Público
                             </Button>
-                            {userRole === 'admin' && (
+                            {userRole === "admin" && (
                               <Button
                                 variant="outline"
                                 size="sm"
@@ -598,7 +727,9 @@ export default function Administrar() {
                 <Card>
                   <CardContent className="p-12 text-center">
                     <Building className="w-16 h-16 mx-auto text-muted-foreground mb-4" />
-                    <h3 className="text-xl font-semibold mb-2">No se encontraron propiedades</h3>
+                    <h3 className="text-xl font-semibold mb-2">
+                      No se encontraron propiedades
+                    </h3>
                     <p className="text-muted-foreground mb-4">
                       Ajusta los filtros o agrega una nueva propiedad
                     </p>
@@ -612,7 +743,7 @@ export default function Administrar() {
             </TabsContent>
 
             {/* Agents Tab (Admin Only) */}
-            {userRole === 'admin' && (
+            {userRole === "admin" && (
               <TabsContent value="agents" className="space-y-6">
                 <Card>
                   <CardHeader>
@@ -624,7 +755,10 @@ export default function Administrar() {
                   <CardContent>
                     <div className="space-y-4">
                       {agents.map((agent) => (
-                        <div key={agent.id} className="flex items-center justify-between p-4 border rounded-lg">
+                        <div
+                          key={agent.id}
+                          className="flex items-center justify-between p-4 border rounded-lg"
+                        >
                           <div className="flex items-center space-x-4">
                             <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
                               <User className="w-5 h-5 text-primary" />
@@ -637,8 +771,10 @@ export default function Administrar() {
                             </div>
                           </div>
                           <div className="flex items-center space-x-2">
-                            <Badge variant={agent.active ? 'default' : 'secondary'}>
-                              {agent.active ? 'Activo' : 'Inactivo'}
+                            <Badge
+                              variant={agent.active ? "default" : "secondary"}
+                            >
+                              {agent.active ? "Activo" : "Inactivo"}
                             </Badge>
                             <Button variant="outline" size="sm">
                               <Edit className="w-4 h-4 mr-2" />
@@ -660,8 +796,12 @@ export default function Administrar() {
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-sm font-medium text-muted-foreground">Total Propiedades</p>
-                        <p className="text-2xl font-bold">{properties.length}</p>
+                        <p className="text-sm font-medium text-muted-foreground">
+                          Total Propiedades
+                        </p>
+                        <p className="text-2xl font-bold">
+                          {properties.length}
+                        </p>
                       </div>
                       <Building className="w-8 h-8 text-muted-foreground" />
                     </div>
@@ -671,9 +811,14 @@ export default function Administrar() {
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-sm font-medium text-muted-foreground">Activas</p>
+                        <p className="text-sm font-medium text-muted-foreground">
+                          Activas
+                        </p>
                         <p className="text-2xl font-bold text-green-600">
-                          {properties.filter(p => p.status === 'activa').length}
+                          {
+                            properties.filter((p) => p.status === "activa")
+                              .length
+                          }
                         </p>
                       </div>
                       <CheckCircle className="w-8 h-8 text-green-600" />
@@ -684,9 +829,14 @@ export default function Administrar() {
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-sm font-medium text-muted-foreground">Vendidas</p>
+                        <p className="text-sm font-medium text-muted-foreground">
+                          Vendidas
+                        </p>
                         <p className="text-2xl font-bold text-blue-600">
-                          {properties.filter(p => p.status === 'vendida').length}
+                          {
+                            properties.filter((p) => p.status === "vendida")
+                              .length
+                          }
                         </p>
                       </div>
                       <DollarSign className="w-8 h-8 text-blue-600" />
@@ -697,7 +847,9 @@ export default function Administrar() {
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-sm font-medium text-muted-foreground">Valor Total</p>
+                        <p className="text-sm font-medium text-muted-foreground">
+                          Valor Total
+                        </p>
                         <p className="text-2xl font-bold">$16.7M</p>
                       </div>
                       <TrendingUp className="w-8 h-8 text-muted-foreground" />
