@@ -23,6 +23,7 @@ import {
 export default function Index() {
   const [searchTerm, setSearchTerm] = useState('');
   const [propertyType, setPropertyType] = useState('all');
+  const [priceRange, setPriceRange] = useState('all');
 
   const propertyTypes = [
     { id: 'terrenos', name: 'Terrenos', icon: TreePine, color: 'bg-green-500', count: 45 },
