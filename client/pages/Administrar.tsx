@@ -114,7 +114,7 @@ export default function Administrar() {
       location: "Roma Norte, CDMX",
       status: "pendiente",
       agentId: "agent001",
-      agentName: "María González",
+      agentName: "María Gonz��lez",
       area: 120,
       description: "Local comercial en excelente ubicación",
       featured: false,
@@ -159,7 +159,7 @@ export default function Administrar() {
       filterStatus === "all" || property.status === filterStatus;
     const matchesType = filterType === "all" || property.type === filterType;
     const matchesAgent =
-      userRole === "admin" || property.agentId === "agent001"; // Simulate current agent
+      isAdmin || property.agentId === user?.id; // Show all for admin, only own for agents
 
     return matchesSearch && matchesStatus && matchesType && matchesAgent;
   });
