@@ -16,6 +16,7 @@ export default function Layout({ children }: LayoutProps) {
     { name: 'Propiedades', href: '/propiedades', icon: Building },
     { name: 'Asesoría Jurídica', href: '/asesoria', icon: Scale },
     { name: 'Agentes', href: '/agentes', icon: Users },
+    { name: 'Administrar', href: '/administrar', icon: Settings },
   ];
 
   const isActive = (href: string) => location.pathname === href;
