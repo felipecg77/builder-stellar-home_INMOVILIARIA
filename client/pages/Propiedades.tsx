@@ -34,7 +34,7 @@ export default function Propiedades() {
       price: 4500000,
       priceFormatted: '$4,500,000',
       location: 'Polanco, CDMX',
-      image: '/placeholder.svg',
+      image: 'https://images.pexels.com/photos/323776/pexels-photo-323776.jpeg?auto=compress&cs=tinysrgb&w=800',
       bedrooms: 3,
       bathrooms: 2,
       area: 180,
@@ -48,7 +48,7 @@ export default function Propiedades() {
       price: 2800000,
       priceFormatted: '$2,800,000',
       location: 'Centro Histórico, CDMX',
-      image: '/placeholder.svg',
+      image: 'https://images.pexels.com/photos/9666115/pexels-photo-9666115.jpeg?auto=compress&cs=tinysrgb&w=800',
       area: 500,
       description: 'Excelente terreno comercial en zona de alta plusvalía, ideal para desarrollo comercial.',
       featured: true
@@ -60,7 +60,7 @@ export default function Propiedades() {
       price: 3200000,
       priceFormatted: '$3,200,000',
       location: 'Roma Norte, CDMX',
-      image: '/placeholder.svg',
+      image: 'https://images.pexels.com/photos/303317/pexels-photo-303317.jpeg?auto=compress&cs=tinysrgb&w=800',
       area: 120,
       description: 'Local comercial en excelente ubicación, perfecto para restaurante o tienda.',
       featured: false
@@ -72,7 +72,7 @@ export default function Propiedades() {
       price: 6200000,
       priceFormatted: '$6,200,000',
       location: 'Coyoacán, CDMX',
-      image: '/placeholder.svg',
+      image: 'https://images.pexels.com/photos/22707294/pexels-photo-22707294.jpeg?auto=compress&cs=tinysrgb&w=800',
       bedrooms: 4,
       bathrooms: 3,
       area: 250,
@@ -86,7 +86,7 @@ export default function Propiedades() {
       price: 1800000,
       priceFormatted: '$1,800,000',
       location: 'Ciudad Satélite, Edo. México',
-      image: '/placeholder.svg',
+      image: 'https://images.pexels.com/photos/10555518/pexels-photo-10555518.jpeg?auto=compress&cs=tinysrgb&w=800',
       area: 300,
       description: 'Terreno plano en fraccionamiento residencial con todos los servicios.',
       featured: false
@@ -98,7 +98,7 @@ export default function Propiedades() {
       price: 8500000,
       priceFormatted: '$8,500,000',
       location: 'Santa Fe, CDMX',
-      image: '/placeholder.svg',
+      image: 'https://images.pexels.com/photos/33308476/pexels-photo-33308476.jpeg?auto=compress&cs=tinysrgb&w=800',
       area: 200,
       description: 'Oficina ejecutiva en torre corporativa con vista panorámica.',
       featured: true
