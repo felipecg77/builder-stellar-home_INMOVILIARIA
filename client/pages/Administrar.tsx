@@ -494,32 +494,28 @@ export default function Administrar() {
                     Administrar Propiedades
                   </h1>
                   <p className="text-muted-foreground">
-                    {userRole === "admin"
+                    {isAdmin
                       ? "Panel de administrador - Gestión completa"
                       : "Panel de agente - Mis propiedades"}
                   </p>
                 </div>
               </div>
               <div className="flex items-center space-x-4">
-                <Badge
-                  variant={userRole === "admin" ? "default" : "secondary"}
-                  className="flex items-center"
-                >
-                  {userRole === "admin" ? (
-                    <Shield className="w-4 h-4 mr-1" />
-                  ) : (
-                    <User className="w-4 h-4 mr-1" />
-                  )}
-                  {userRole === "admin" ? "Administrador" : "Agente"}
-                </Badge>
-                <Button
-                  variant="outline"
-                  onClick={() =>
-                    setUserRole(userRole === "admin" ? "agent" : "admin")
-                  }
-                >
-                  Cambiar a {userRole === "admin" ? "Agente" : "Admin"}
-                </Button>
+                <div className="flex items-center space-x-2">
+                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                    {isAdmin ? (
+                      <Shield className="w-5 h-5 text-primary" />
+                    ) : (
+                      <User className="w-5 h-5 text-primary" />
+                    )}
+                  </div>
+                  <div>
+                    <div className="text-sm font-medium">{user?.name}</div>
+                    <Badge variant={isAdmin ? "default" : "secondary"} className="text-xs">
+                      {user?.role === "admin" ? "Administrador" : "Agente"}
+                    </Badge>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
