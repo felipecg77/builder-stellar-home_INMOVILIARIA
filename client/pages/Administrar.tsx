@@ -229,7 +229,7 @@ export default function Administrar() {
       bathrooms: "",
       area: "",
       status: "activa",
-      agentId: userRole === "agent" ? "agent001" : "",
+      agentId: isAgent ? user?.id || "" : "",
       images: [],
       featured: false,
     });
