@@ -4,14 +4,14 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { 
-  Settings, 
-  Plus, 
-  Edit, 
-  Trash2, 
-  Eye, 
-  Shield, 
-  User, 
+import {
+  Settings,
+  Plus,
+  Edit,
+  Trash2,
+  Eye,
+  Shield,
+  User,
   Building,
   Search,
   Filter,
@@ -29,7 +29,8 @@ import {
   Save,
   X,
   Upload,
-  Camera
+  Camera,
+  TrendingUp
 } from 'lucide-react';
 
 export default function Administrar() {
