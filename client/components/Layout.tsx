@@ -198,7 +198,14 @@ export default function Layout({ children }: LayoutProps) {
                   </>
                 ) : (
                   <>
-                    <Button variant="outline" className="w-full">
+                    <Button
+                      variant="outline"
+                      className="w-full"
+                      onClick={() => {
+                        setIsContactModalOpen(true);
+                        setIsMenuOpen(false);
+                      }}
+                    >
                       Contacto
                     </Button>
                     <Link to="/login" onClick={() => setIsMenuOpen(false)}>
