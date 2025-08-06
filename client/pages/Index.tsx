@@ -289,7 +289,9 @@ export default function Index() {
                       <span>{property.bathrooms} baños</span>
                     </div>
                   )}
-                  <Button className="w-full">Ver Detalles</Button>
+                  <Link to={`/propiedades/${property.id}`}>
+                    <Button className="w-full">Ver Detalles</Button>
+                  </Link>
                 </CardContent>
               </Card>
             ))}
