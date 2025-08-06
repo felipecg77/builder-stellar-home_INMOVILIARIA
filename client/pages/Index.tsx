@@ -103,9 +103,9 @@ export default function Index() {
             </p>
             
             {/* Search Bar */}
-            <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl p-6 mb-8">
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div className="md:col-span-2">
+            <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-xl p-6 mb-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+                <div className="lg:col-span-2">
                   <div className="relative">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
                     <input
@@ -118,7 +118,7 @@ export default function Index() {
                   </div>
                 </div>
                 <div>
-                  <select 
+                  <select
                     className="w-full py-3 px-4 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                     value={propertyType}
                     onChange={(e) => setPropertyType(e.target.value)}
@@ -127,6 +127,20 @@ export default function Index() {
                     <option value="terrenos">Terrenos</option>
                     <option value="casas">Casas</option>
                     <option value="comerciales">Locales Comerciales</option>
+                  </select>
+                </div>
+                <div>
+                  <select
+                    className="w-full py-3 px-4 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                    value={priceRange}
+                    onChange={(e) => setPriceRange(e.target.value)}
+                  >
+                    <option value="all">Cualquier precio</option>
+                    <option value="0-1000000">Hasta $1,000,000</option>
+                    <option value="1000000-2500000">$1,000,000 - $2,500,000</option>
+                    <option value="2500000-5000000">$2,500,000 - $5,000,000</option>
+                    <option value="5000000-10000000">$5,000,000 - $10,000,000</option>
+                    <option value="10000000+">Más de $10,000,000</option>
                   </select>
                 </div>
                 <div>
