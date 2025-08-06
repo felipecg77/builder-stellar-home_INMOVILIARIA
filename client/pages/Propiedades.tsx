@@ -229,7 +229,9 @@ export default function Propiedades() {
           </div>
         )}
         <div className="flex gap-2">
-          <Button className="flex-1">Ver Detalles</Button>
+          <Link to={`/propiedades/${property.id}`} className="flex-1">
+            <Button className="w-full">Ver Detalles</Button>
+          </Link>
           <Button variant="outline" size="sm">
             <Heart className="w-4 h-4" />
           </Button>
