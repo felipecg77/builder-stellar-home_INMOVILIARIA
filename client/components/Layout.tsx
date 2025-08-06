@@ -12,14 +12,20 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const { user, logout, isAuthenticated, isAdmin, isAgent } = useAuth();
 
-  const navigation = [
+  // Base navigation available to everyone
+  const baseNavigation = [
     { name: "Inicio", href: "/", icon: Home },
     { name: "Propiedades", href: "/propiedades", icon: Building },
     { name: "Asesoría Jurídica", href: "/asesoria", icon: Scale },
     { name: "Agentes", href: "/agentes", icon: Users },
-    { name: "Administrar", href: "/administrar", icon: Settings },
   ];
+
+  // Add admin navigation only for authenticated users
+  const navigation = isAuthenticated
+    ? [...baseNavigation, { name: "Administrar", href: "/administrar", icon: Settings }]
+    : baseNavigation;
 
   const isActive = (href: string) => location.pathname === href;
 
